@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
+	<title>Responsive Web Mobile - SlidePanel</title>
+
+	<!-- Set the viewport width to device width for mobile -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  	<!-- Included Bootstrap CSS Files -->
+	<link rel="stylesheet" href="./js/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="./js/bootstrap/css/bootstrap-responsive.min.css" />
+
+	<!-- Includes FontAwesome -->
+	<link rel="stylesheet" href="./css/font-awesome/css/font-awesome.min.css" />
+
+	<!-- SlidePanel Css -->	
+	<link rel="stylesheet" href="./js/jquery.slidepanel/css/stylesheet.css" />
+
+</head>
+<body>
+
+	<!-- SlidePanel -->
+	<div id="slidein-panel">
+		<!-- SlidePanel Button Container -->
+		<div id="slidein-panel-container">
+			<a id="slidein-panel-btn" href="#"><i class="icon-list"></i></a>
+		</div>
+		<!-- /SlidePanel Button Container -->
+
+		<!-- SlidePanel Content -->
+		<ul>
+			<li><a href="#"><i class="icon-gear"></i>&nbsp; Settings</a></li>
+			<li><a href="#"><i class="icon-music"></i>&nbsp; Music</a></li>
+			<li><a href="#"><i class="icon-facetime-video"></i>&nbsp; Video</a></li>
+			<li><a href="#"><i class="icon-cloud-upload"></i>&nbsp; Cloud</a></li>
+			<li><a href="#"><i class="icon-bell-alt"></i>&nbsp; Alarm</a></li>
+			<li><a href="#"><i class="icon-comment"></i>&nbsp; Comment</a></li>
+			<li><a href="#"><i class="icon-envelope"></i>&nbsp; Inbox</a></li>
+			<li><a href="#"><i class="icon-bookmark"></i>&nbsp; Bookmarks</a></li>	
+			<li><a href="#"><i class="icon-off"></i>&nbsp; Logout</a></li>
+		</ul>
+		<!-- /SlidePanel Content -->
+	</div>
+	<!-- /SlidePanel -->
+
+	<!-- BOOTSTRAP CONTENT -->
+	<div class="container">
+		<div class="row">
+			<div class="span12">
+				<h1>jQuery Slide In Panel</h1>
+				<p>this is just an example of a simple jQuery plugin to integrate to a responsive Twitter Bootstrap site a slide in effect panel.</p>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script src="./js/jquery-1.10.0.min.js"></script>
+	<script src="./js/bootstrap/js/bootstrap.min.js"></script>
+	
+	<!-- SlidePanel jQuery -->
+	<script src="./js/jquery.slidepanel/js/jquery.slidepanel.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.SlidePanel();
+		});
+	</script>
+</body>
+</html>
