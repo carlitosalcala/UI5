@@ -83,13 +83,13 @@ jQuery(function($) {'use strict';
 		$(this).css('width', $(this).attr('data-transition')+'%');
 	});
 
-	if( $('#gmap').length ) {
+//	if( $('#gmap').length ) {
 		var map;
 
 		map = new GMaps({
 			el: '#gmap',
-			lat: 43.04446,
-			lng: -76.130791,
+			lat: 43.291605,
+			lng: -2.995232,
 			scrollwheel:false,
 			zoom: 16,
 			zoomControl : false,
@@ -101,13 +101,13 @@ jQuery(function($) {'use strict';
 		});
 
 		map.addMarker({
-			lat: 43.04446,
-			lng: -76.130791,
+			lat: 43.291605,
+			lng: -2.995232,
 			animation: google.maps.Animation.DROP,
 			verticalAlign: 'bottom',
 			horizontalAlign: 'center',
 			backgroundColor: '#3e8bff',
 		});
-	}
+//	}
 
 });

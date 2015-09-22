@@ -2,6 +2,7 @@
                 src:'http://openui5.org/images/OpenUI5_new_big_side.png'
                 });
      oImage.placeAt("image");
+  
   var btn = new sap.m.Button({
                 text:'Press me!  I\'m a fucking button!!!!',
                 press: function() {
@@ -9,6 +10,7 @@
               }
           });
     btn.placeAt('content');
+  
   var barHeader = new sap.m.Bar({
 				contentMiddle: [
 						new sap.m.Label("lblHeader",
