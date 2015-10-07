@@ -5,58 +5,27 @@
  var tileprojects = new sap.m.TileContainer({
 			tiles: [
 				new sap.m.StandardTile({
-					  icon : "sap-icon://ppt-attachment",
-					  number : "CV",
-					  title : "View Resume",
-					  info : "Sort version",
-					  infoState : "Error",
-					press:function(){
-						app.to("page2");
-					}
-					
-				}),
-				new sap.m.StandardTile({
-					  icon : "sap-icon://account",
-					  number : "33",
-					  title : "Knowlegde",
-					  info : "SAP ABAP - Workflow - ESS/MSS - Webdynpro - SAP UI5 - HANA XS",
-					  infoState : "Success",
-					press:function(){
-						app.to("page2");
-					}
-					
-				}),
-				new sap.m.StandardTile({
-					  icon : "sap-icon://product",
-					  number : "33",
-					  title : "Web examples",
-					  info : "Orange",
-					  infoState : "Warning",
-					press:function(){
-						app.to("page2");
-					}
-					
-				}),
-			new sap.m.StandardTile({
-					  icon : "sap-icon://email-read",
-					  number : "33",
-					  title : "Contact me",
-					  info : "Red",
+					  icon : "sap-icon://inbox",
+					  number : "42",
+					  title : "Add New Employee",
+					  info : "Overdue",
 					  infoState : "Error",
 					press:function(){
 						app.to("page2");
 					}
 					
 				})
-		
-			],			
+			],
+			
 		});
+//		app.addPage(tilecont);
 
 // create the first page of your application
       var page1 = new sap.m.Page("page1", {
           title: "SAP HCM ESS/MSS Consultant",
           content : [
-		tileprojects /*,		// Add tile to navigate to projects 
+		tileprojects,		// Add tile to navigate to projects 
+		new sap.m.Label("l1",{text:"Welcome!", textAlign:"Center"})	, 
 	      new sap.m.Button({   // content is just one Button
               text : "Projects",
               press: function() {
@@ -74,7 +43,7 @@
               press: function() {
                   app.to("page4");   // when pressed, it triggers drilldown to page 2
               }
-          })	*/
+          })	
 			]		
       });
       // create the second page of your application
