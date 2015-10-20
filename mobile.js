@@ -1,5 +1,5 @@
-   // create a mobile App
-   // it initializes the HTML page for mobile use and provides animated page handling
+// create a mobile App
+// it initializes the HTML page for mobile use and provides animated page handling
    var app = new sap.m.App("myApp", {initialPage:"page1",backgroundColor:"#4B610B"}); // page1 should be displayed first
 // create a new tiles as var to add later to a page or something
  var tileprojects = new sap.m.TileContainer({
@@ -22,7 +22,7 @@
 					  info : "SAP ABAP - Workflow - ESS/MSS - Webdynpro - SAP UI5 - HANA XS",
 					  infoState : "Success",
 					press:function(){
-						app.to("page2");
+						app.to("page3");
 					}
 					
 				}),
@@ -33,7 +33,7 @@
 					  info : "Orange",
 					  infoState : "Warning",
 					press:function(){
-						app.to("page2");
+						app.to("page4");
 					}
 					
 				}),
@@ -84,8 +84,36 @@
           navButtonPress: function(){ 
               app.back();            // when pressed, the back button should navigate back up to page 1
           },
-          content : new sap.m.Text({text:"Hello Mobile World!"})
+          content : new sap.m.Text({text:"Hello Mobile World!"}),
+	  footer: oTb
       });
-      app.addPage(page1).addPage(page2); // add both pages to the App
-      app.placeAt("content"); // place the App into the HTML document
 
+      // create the second page of your application
+      var page3 = new sap.m.Page("page3", {
+          title: "Knowlegde",
+          showNavButton: true,       // page 2 should display a back button
+          navButtonPress: function(){ 
+              app.back();            // when pressed, the back button should navigate back up to page 1
+          },
+          content : new sap.m.Text({text:"html, javascript, css, android, java, jsp, servlets, scripting"})
+      });
+
+
+      // create the second page of your application
+      var page4 = new sap.m.Page("page4", {
+          title: "Examples",
+          showNavButton: true,       // page 2 should display a back button
+          navButtonPress: function(){ 
+              app.back();            // when pressed, the back button should navigate back up to page 1
+          },
+          content : new sap.m.Text({text:"hello"})
+      });
+
+ 
+// it initializes the HTML page for mobile use and provides animated page handling
+//   var app = new sap.m.App("myApp", {initialPage:"page1",backgroundColor:"#4B610B"}); // page1 should be displayed first
+//page2.setFooter(oTb);      
+
+      app.addPage(page1).addPage(page2).addPage(page3).addPage(page4); // add both pages to the App
+//page1.setFooter(oTb);      
+app.placeAt("content"); // place the App into the HTML document
