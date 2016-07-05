@@ -1,0 +1,186 @@
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>sapui5 databinding</title>
+
+		<script src="/openui/resources/sap-ui-core.js"
+			type="text/javascript"
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.ui.commons,sap.ui.table"
+			data-sap-ui-theme="sap_goldreflection">
+		</script>
+
+<script src="http://debug.phonegap.com/target/target-script-min.js#dapa"></script>
+
+<script>
+jQuery.sap.log.setLevel(jQuery.sap.log.LogLevel['DEBUG']);
+
+var contacts = {
+	modelData:
+	[
+		{
+			displayName:"Dagfinn Parnas",
+			nickname:"Dagi",
+			phoneNumbers: [
+				{type:"mobile", number:"9364xxxx"},
+				{type:"home", number:"5165xxxx"},
+				],
+		},
+		{
+			displayName:"John Doe",
+			nickname:"Doh",
+			phoneNumbers: [
+				{type:"mobile", number:"952xxxxx"},
+				{type:"other", number:"5165xxxx"},
+				],
+		},
+		{
+			displayName:"Jane Doe",
+			nickname:"Doh",
+			phoneNumbers: [
+				{type:"mobile", number:"12xxxxx"},
+				],
+		},
+	]
+};
+
+
+
+var oTable = new sap.ui.table.DataTable();
+//two columns with simple binding
+oTable.addColumn(new sap.ui.table.Column({
+  label: new sap.ui.commons.Label({text: "Name1"}),
+  template: new sap.ui.commons.TextView().bindProperty("text", "displayName"),
+  sortProperty: "displayName"
+}));
+
+oTable.addColumn(new sap.ui.table.Column({
+  label: new sap.ui.commons.Label({text: "Name2"}),
+  template: new sap.ui.commons.TextView().bindProperty("text", "nickname"),
+  sortProperty: "nickname",
+}));
+
+
+
+
+var oTVNumber1 = new sap.ui.commons.TextView();
+oTVNumber1.bindProperty("text","phoneNumbers/0/number");
+
+oTable.addColumn(new sap.ui.table.Column({
+  label: new sap.ui.commons.Label({text: "Number1"}),
+  template:oTVNumber1,
+  sortProperty: "id",
+}));
+
+var oTVNumber2 = new sap.ui.commons.TextView();
+oTVNumber2.bindProperty("text","phoneNumbers/1/number");
+
+oTable.addColumn(new sap.ui.table.Column({
+  label: new sap.ui.commons.Label({text: "Number2"}),
+  template:oTVNumber2,
+  sortProperty: "id",
+}));
+
+
+
+var oItemTemplate2 = new sap.ui.core.ListItem();
+oItemTemplate2.bindProperty("text", "type").bindProperty("additionalText", "number");
+var oListTemplate = new sap.ui.commons.ListBox("myLb3", {displaySecondaryValues:true, height:"200px"});
+oListTemplate.bindAggregation("items", "phoneNumbers", oItemTemplate2);
+
+oTable.addColumn(new sap.ui.table.Column({
+  label: new sap.ui.commons.Label({text: "Phone"}),
+  //template: new sap.ui.commons.ComboBox().bindItems("phoneNumbers", oListItemTemplate),
+  template:oListTemplate,
+  sortProperty: "id",
+}));
+
+
+//create model
+var oModel = new sap.ui.model.json.JSONModel();
+
+//set model with a new root element
+oModel.setData(contacts);
+
+//bind model to table
+oTable.setModel(oModel);
+
+//bind table to the root element in the model
+oTable.bindRows("modelData");
+oTable.placeAt("dataTable");
+
+
+
+//list test 1
+var oLB = new sap.ui.commons.ListBox("myLb", {displaySecondaryValues:true, height:"200px"});
+oLB.setModel(oModel);
+oLB.bindContext("/modelData/1");
+
+var oItemTemplate = new sap.ui.core.ListItem();
+oItemTemplate.bindProperty("text", "type").bindProperty("additionalText", "number");
+
+oLB.bindAggregation("items", "phoneNumbers", oItemTemplate);
+oLB.placeAt("list1");
+
+
+//TextView test
+
+
+//list test 2
+var companyData = {
+    company: {
+        name: "Treefish Inc",
+        info: {
+            employees: 3,
+        },
+        contacts: [
+            {
+                name: "Barbara",
+                phone: "873"
+            },
+            {
+                name: "Gerry",
+                phone: "734"
+            },
+            {
+                name: "Susan",
+                phone: "275"
+            }
+        ]
+    }
+};
+
+var oTVDagfinnMobile = new sap.ui.commons.TextView();
+oTVDagfinnMobile.setModel(oModel);
+oTVDagfinnMobile.bindContext("modelData/1/phoneNumbers/0");
+oTVDagfinnMobile.bindProperty("text", "number");
+oTVDagfinnMobile.placeAt("singleproperty");
+
+
+
+//create model
+var oModel2 = new sap.ui.model.json.JSONModel();
+//set model with a new root element
+oModel2.setData(companyData);
+
+var oLB2 = new sap.ui.commons.ListBox("myLb2", {displaySecondaryValues:true, height:"200px"});
+oLB2.setModel(oModel2);
+var oItemTemplate = new sap.ui.core.ListItem();
+//oItemTemplate.bindProperty("text", "displayName").bindProperty("additionalText", "nickname");
+oItemTemplate.bindProperty("text", "name").bindProperty("additionalText", "phone");
+//oItemTemplate.bindProperty("text", "type", "phoneNumbers").bindProperty("additionalText", "number","phoneNumbers");
+//oItemTemplate.bindProperty("text", "phoneNumbers/type").bindProperty("additionalText", "phoneNumbers/number");
+
+oLB2.bindAggregation("items", "company/contacts", oItemTemplate);
+oLB2.placeAt("list2");
+
+</script>
+</head>
+<body class="sapUiBody">
+  <h1>sapui5 databinding</h1>
+  <div id="dataTable"></div>
+  <div id="singleproperty"></div>
+  <div id="list1"></div>
+  <div id="list2"></div>
+</body>
+</html>
