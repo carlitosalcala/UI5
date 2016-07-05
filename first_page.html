@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Bar - sap.m</title>
+		<script src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+			type="text/javascript" 
+			id="sap-ui-bootstrap"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-theme="sap_bluecrystal">
+		</script>
+		<script src="functions.js"></script>
+		<style>
+			.pageInPage {
+				height : 300px;
+			}
+		</style>
+		<script type="text/javascript">
+			jQuery.sap.initMobile();
+			
+			var page = new sap.m.Page("page");
+			
+			if (sap.ui.Device.os.ios){
+				var Bar = new sap.m.Bar({ 
+			//		contentLeft: [new sap.m.Button('Button', {text: "Back", type:sap.m.ButtonType.Back})],	
+					contentMiddle: [new sap.m.Label("myLabelDefault", {text: "Welcome to SAP UI5 Web page from IOS"})],
+			//		contentRight: [new sap.m.Button('Button1', {text: "Edit"})]
+				});
+				page.setCustomHeader(Bar);
+			} else {
+				var Bar1 = new sap.m.Bar({ 
+			//		contentLeft: [new sap.m.Button('ButtonDefault', {icon:"images/favorite@2x.png", type:sap.m.ButtonType.Up})],
+					contentMiddle: [new sap.m.Label("myLabelDefault", {text: "Welcome to SAP UI5 Web page"})]
+			//		contentRight: [new sap.m.Label({text:"123"}), new sap.m.Button('headerButtonDefault', {text: "Edit"})]
+				});
+				page.setCustomHeader(Bar1);
+			}
+			
+			var Bar18 = new sap.m.Bar({
+				design : sap.m.BarDesign.SubHeader,
+				contentLeft: getTestContent()
+			});
+			page.addContent(Bar18);
+			var pageInPage = new sap.m.Page({
+				customHeader : new sap.m.Bar({ 
+					design : "SubHeader", 
+					contentMiddle : [new sap.m.Label({ text : "Page in page: This is a Header with SubHeader design"})]
+				}),
+				subHeader : new sap.m.Bar({ 
+					design : "Footer", 
+					contentMiddle : [new sap.m.Label({ text : "This is a SubHeader with footer design"})]
+				}),
+				footer : new sap.m.Bar({ 
+					design : "Header", 
+					contentMiddle : [new sap.m.Label({ text : "This is a footer with header design"})]
+				})
+			}).addStyleClass("pageInPage");
+			
+			page.addContent(pageInPage);
+			var footer = new sap.m.Bar({ 
+				contentLeft: [new sap.m.SearchField({placeholder: "search..."})],	
+				contentMiddle: [new sap.m.Button({icon: "images/feed@2x.png"}),
+								new sap.m.Button({icon: "images/favorite@2x.png"}),
+								new sap.m.Button({icon: "images/flag@2x.png"})],
+				contentRight: [new sap.m.Label({ text : "footie"})]
+			});
+			page.setFooter(footer);
+			page.placeAt("body");
+			
+		</script>
+		
+	</head>
+	<body id="body" class="sapUiBody">
+	</body>
+
+
